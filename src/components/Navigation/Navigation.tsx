@@ -1,8 +1,11 @@
+import Input from '../Input/Input';
+import './Navigation.scss';
+
 function Navigation() {
   return (
-    <div>
-      
-    </div>
+    <form className='navigation'>
+      <Input/>
+    </form>
   );
 }
 

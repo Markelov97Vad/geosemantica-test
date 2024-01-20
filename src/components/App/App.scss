@@ -1,7 +1,7 @@
-.title {
-  color: green;
-}
-
-button {
-  background-color: green;
+.root {
+  padding: 30px 20px 0;
+  box-sizing: border-box;
+  &__title {
+    color: green;
+  }
 }

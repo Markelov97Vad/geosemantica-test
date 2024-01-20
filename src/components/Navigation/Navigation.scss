@@ -1,0 +1,33 @@
+@use '../../assets/styles/variables' as *;
+@use '../../assets/styles/mixins' as *;
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // align-items: center;
+  position: absolute;
+  box-sizing: border-box;
+  top: 12px;
+  left: 0;
+  right: 0;
+  background-color: $color-background;
+  z-index: 1;
+  width: 85%;
+  min-height: 60px;
+  margin: 0 auto;
+  padding: 5px;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+
+  &:focus-within {
+    box-shadow: 0 0 6px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  @include mobile {
+    // margin-left: 50px;
+    // left: 50px;
+    width: 85%;
+    // margin-right: 30px;
+    margin-left: 46px;
+  }
+};

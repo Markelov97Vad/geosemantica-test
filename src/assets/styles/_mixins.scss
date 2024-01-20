@@ -1,0 +1,30 @@
+@mixin mobile() {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin font-face($weight-name, $weight-number, $style: 'normal') {
+  @font-face {
+    font-family: 'Unbounded';
+    font-style: $style;
+    font-display: swap;
+    font-weight: $weight-number;
+    src: url(../fonts/Unbounded-#{$weight-name}.woff2) format('woff2'),
+      url(../fonts/Unbounded-#{$weight-name}.woff) format('woff');
+  }
+}
+
+@mixin showFonts(
+  $family: 'Unbounded',
+  $size,
+  $color,
+  $weight: 400,
+  $line-height 
+) {
+  font-family: $family, 'Arial';
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height;
+  color: $color;
+}
