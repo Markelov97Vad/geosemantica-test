@@ -1,4 +1,4 @@
-export type BuildMode = 'production' | 'development' // union type
+export type BuildMode = 'production' | 'development'
 export type PlatformType = 'desktop' | 'mobile'
 
 export interface BuildPaths {

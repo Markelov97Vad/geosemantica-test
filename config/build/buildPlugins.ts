@@ -8,7 +8,7 @@ import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import CopyPlugin from 'copy-webpack-plugin';
 
-function buildPlugins({mode, paths , analyzer, platform, typeChecking} : BuildOptions): Configuration['plugins'] {
+function buildPlugins({mode, paths , analyzer, platform} : BuildOptions): Configuration['plugins'] {
   const isDevelopment = mode === 'development'
   const isProduction = mode === 'production'
 
@@ -19,6 +19,7 @@ function buildPlugins({mode, paths , analyzer, platform, typeChecking} : BuildOp
     }),
     new DefinePlugin({
       __PLATFORM__: JSON.stringify(platform),
+      process: {env: {}}
     })
   ]
 

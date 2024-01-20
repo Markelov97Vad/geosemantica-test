@@ -7,21 +7,12 @@ function buildLoaders(options: BuildOptions ): ModuleOptions['rules'] {
   const {mode, typeChecking} = options;
   const isDev = mode === 'development'
   const isProd = mode === 'production'
-
-  const cssLoadersMod = {
-    loader: "css-loader",
-    options: {
-      modules: {
-        localIdentName: isDev ? '[name]__[local]' : '[hash:base64:8]'
-      }
-    }
-  }
   
   const styleLoader = {
     test: /\.s[ac]ss$/i,
     use: [
       isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-      cssLoadersMod,
+      "css-loader",
       "sass-loader"
     ],
   }
