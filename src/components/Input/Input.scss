@@ -5,6 +5,7 @@
   border: none;
   background-color: inherit;
   min-height: 40px;
+  margin: 5px;
 
   @include showFonts(
     $size: 14px,
