@@ -1,4 +1,4 @@
-export interface  IGeoObject {
+export type featureMemberType = {
   GeoObject: {
     metaDataProperty: {
       GeocoderMetaData: {
@@ -30,7 +30,7 @@ export interface  IGeoObject {
   }
 }
 
-export interface IGeocoderResponseMetaData {
+export type ImetaDataProperty = {
     GeocoderResponseMetaData: {
       request: string
       results: string
@@ -41,8 +41,8 @@ export interface IGeocoderResponseMetaData {
 export type ApiGeocoderResponseType = {
   response: {
     GeoObjectCollection: {
-      metaDataProperty: IGeocoderResponseMetaData;
-      featureMember: IGeoObject[];
+      metaDataProperty: ImetaDataProperty;
+      featureMember: featureMemberType[];
     }
   }
 }

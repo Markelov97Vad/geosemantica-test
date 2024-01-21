@@ -39,7 +39,7 @@ function MapSection() {
     setViewState({
       longitude: Number(point.split(' ')[0]),
       latitude: Number(point.split(' ')[1]),
-      zoom: 14
+      zoom: 12
     })
   }, [point]);
   return (

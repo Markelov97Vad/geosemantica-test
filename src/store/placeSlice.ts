@@ -1,11 +1,12 @@
-import { IGeoObject } from "@/types/api";
+import { featureMemberType } from "@/types/api";
 import { DEFAULT_POINT } from "@/utils/constants";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { fetchPlace } from "./api";
 
 type InitialStateType = {
   point: string;
-  placeData: IGeoObject[];
-  error: null;
+  placeData: featureMemberType[];
+  error: null | string;
   loading: 'idle' | 'pending' | 'succeeded' | 'failed';
 }
 
@@ -25,9 +26,22 @@ const placeSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-
+    builder.addCase(fetchPlace.pending,(state) => {
+      state.loading = 'pending';
+      state.error = null;
+    })
+    .addCase(fetchPlace.fulfilled, (state, action) => {
+      state.loading = 'succeeded';
+      state.placeData = action.payload;
+    })
+    .addCase(fetchPlace.rejected, (state, action) => {
+      state.loading = 'failed';
+      state.error = action.payload;
+    })
   }
 })
+
+
 
 export const { addPoint } = placeSlice.actions;
 export default placeSlice.reducer;
