@@ -13,7 +13,7 @@
   right: 0;
   background-color: $color-background;
   z-index: 1;
-  width: 85%;
+  max-width: 82vw;
   min-height: 60px;
   margin: 0 auto;
   // padding: 5px;
@@ -26,9 +26,14 @@
   @include mobile {
     // margin-left: 50px;
     // left: 50px;
-    width: 85%;
+    // width: 85%;
     // margin-right: 30px;
     margin-left: 46px;
+  }
+
+  &__input-wrapper {
+    display: flex;
+    padding-inline: 5px;
   }
 
   &__input {
@@ -36,6 +41,7 @@
     background-color: inherit;
     min-height: 40px;
     margin: 5px;
+    width: 100%;
   
     @include showFonts(
       $size: 14px,
@@ -46,6 +52,20 @@
     &:focus {
       outline: none;
       // border-bottom: 2px solid $color-outline;
+    }
+  }
+
+  &__button {
+    border: none;
+    width: 30px;
+    height: 30px;
+    align-self: center;
+    background: url('../../assets/img/close.svg') no-repeat center;
+    background-size: 20px 20px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: .6;
     }
   }
 };
@@ -73,6 +93,11 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    // width: 300px;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     @include showFonts(
       $size: 15px,
       $weight: 700,
@@ -88,6 +113,9 @@
 
   &__description {
     margin-left: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     @include showFonts(
       $size: 12px,
       $weight: 400,

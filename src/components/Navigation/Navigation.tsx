@@ -5,7 +5,7 @@ import { ChangeEvent, MouseEvent, MouseEventHandler, useEffect, useRef, useState
 import { ApiGeocoderResponseType, featureMemberType } from '@/types/apiPlace';
 import useDebouncedSearch from '@/hooks/useDebounceSearch';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
-import { addPoint } from '@/store/searchSlice';
+import { addPoint, clearSearchData } from '@/store/searchSlice';
 import { fetchOrganization, fetchPlace } from '@/store/api';
 // import useDebouncedSearch from '@/hooks/useDebounceSearch';
 
@@ -34,8 +34,11 @@ function Navigation() {
     // if (document.activeElement === inputRef.current) {
     //   console.log('focus');
     // }
-    console.log('Организации', organizationData);
-  }, [debounceSearch]);
+    if(inputValue.length === 0) {
+      dispatch(clearSearchData());
+    }
+    // console.log('Организации', organizationData);
+  }, [inputValue]);
 
   const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
     const { value } = evt.target;
@@ -46,6 +49,10 @@ function Navigation() {
     return document.activeElement === inputRef.current;
   };
 
+  const handleClear = () => {
+    setInputValue('');
+  }
+
   // const handleClick = (evt: MouseEvent<HTMLLIElement>) => {
   //   evt.stopPropagation();
   //   const { textContent } = evt.currentTarget
@@ -55,17 +62,21 @@ function Navigation() {
 
   return (
     <form className="navigation" onSubmit={e => e.preventDefault()}>
-      <input
-        ref={inputRef}
-        value={inputValue}
-        name="search"
-        onChange={handleChange}
-        className="navigation__input"
-        type="search"
-        minLength={3}
-        maxLength={50}
-        placeholder="Введите запрос сюда.."
-      />
+      <div className='navigation__input-wrapper'>
+        <input
+          ref={inputRef}
+          value={inputValue}
+          name="search"
+          onChange={handleChange}
+          className="navigation__input"
+          type="text"
+          minLength={3}
+          maxLength={100}
+          autoComplete='off'
+          placeholder="Введите запрос сюда.."
+        />
+        <button onClick={handleClear} className='navigation__button' type='button'></button>
+      </div>
       {(placeData.length > 0 || organizationData.length > 0) && isFocus() && inputValue.length > 2 && (
         <div className="dropdown">
           <ul className="dropdown__list">

@@ -27,6 +27,10 @@ const searcSlice = createSlice({
     addPoint(state, action: PayloadAction<string>) {
       state.point = action.payload;
     },
+    clearSearchData(state) {
+      state.organizationData = [];
+      state.placeData = [];
+    }
   },
   extraReducers: builder => {
     builder
@@ -57,5 +61,5 @@ const searcSlice = createSlice({
   },
 });
 
-export const { addPoint } = searcSlice.actions;
+export const { addPoint, clearSearchData } = searcSlice.actions;
 export default searcSlice.reducer;

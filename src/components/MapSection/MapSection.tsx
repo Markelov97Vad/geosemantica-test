@@ -59,7 +59,7 @@ function MapSection() {
         mapStyle="https://api.maptiler.com/maps/streets/style.json?key=TtkWw04Kri0pzq5wPr6w"
       >
         <NavigationControl position="top-left" />
-        <GeolocateControl onGeolocate={handleGeolocate} />
+        <GeolocateControl onGeolocate={handleGeolocate} position="top-left"/>
         <Marker longitude={longValue} latitude={latValue} color="red" />
         {/* <Marker longitude={longValue2} latitude={latValue2} color="red" fly/> */}
       </Map>
