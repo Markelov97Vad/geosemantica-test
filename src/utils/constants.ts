@@ -1,2 +1,1 @@
 export const DEFAULT_POINT = '30.30181113722973 59.95294975379594';
-export const KEY = '8b6c1bba-81f4-4b9b-9664-0c98c9d3682d';

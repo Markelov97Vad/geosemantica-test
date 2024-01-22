@@ -3,7 +3,7 @@ import maplibregl from 'maplibre-gl';
 // import '../maplibre-gl.scss';
 import './App.scss';
 import { useEffect, useState } from 'react';
-import { ApiGeocoderResponseType } from '@/types/api';
+import { ApiGeocoderResponseType } from '@/types/apiPlace';
 import Navigation from '../Navigation/Navigation';
 import '../../assets/styles/_index.scss';
 import MapSection from '../MapSection/MapSection';
@@ -11,11 +11,9 @@ import MapSection from '../MapSection/MapSection';
 // dotenv.config();
 
 function App() {
-
-
   return (
-    <main className='root'>
-      <MapSection/>
+    <main className="root">
+      <MapSection />
     </main>
   );
 }

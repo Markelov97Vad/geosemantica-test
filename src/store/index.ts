@@ -1,11 +1,11 @@
-import { configureStore } from "@reduxjs/toolkit";
-import placeSlice from "./placeSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import searcSlice from './searchSlice';
 
 export const store = configureStore({
   reducer: {
-    place: placeSlice
-  }
-})
+    search: searcSlice,
+  },
+});
 
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

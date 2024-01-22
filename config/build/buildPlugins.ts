@@ -7,10 +7,12 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import CopyPlugin from 'copy-webpack-plugin';
+import dotenv from 'dotenv';
 
 function buildPlugins({mode, paths , analyzer, platform} : BuildOptions): Configuration['plugins'] {
   const isDevelopment = mode === 'development'
   const isProduction = mode === 'production'
+  const env = dotenv.config().parsed;
 
   const plugins: Configuration['plugins'] = [
     new HtmlWebpackPlugin({
@@ -19,7 +21,8 @@ function buildPlugins({mode, paths , analyzer, platform} : BuildOptions): Config
     }),
     new DefinePlugin({
       __PLATFORM__: JSON.stringify(platform),
-      process: {env: {}}
+      "process.env.API_KEY_PLACE": JSON.stringify(env.API_KEY_PLACE),
+      "process.env.API_KEY_ORG": JSON.stringify(env.API_KEY_ORG),
     })
   ]
 
