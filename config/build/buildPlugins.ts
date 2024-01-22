@@ -37,14 +37,14 @@ function buildPlugins({mode, paths , analyzer, platform} : BuildOptions): Config
       filename: 'css/[name].[contenthash:8].css',
       chunkFilename: 'css/[name].[contenthash:8].css'
     }));
-    plugins.push(new CopyPlugin({
-      patterns: [
-        {
-          from: path.resolve(paths.public, 'data'),
-          to: path.resolve(paths.output, 'data')
-        }
-      ]
-    }))
+    // plugins.push(new CopyPlugin({
+    //   patterns: [
+    //     {
+    //       from: path.resolve(paths.public, 'data'),
+    //       to: path.resolve(paths.output, 'data')
+    //     }
+    //   ]
+    // }))
   }
   if(analyzer) {
     plugins.push(new BundleAnalyzerPlugin());
