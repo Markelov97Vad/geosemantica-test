@@ -20,9 +20,22 @@ ___
 - ```react-map-gl``` - https://visgl.github.io/react-map-gl/
 - ```API Геокодера``` - https://yandex.ru/maps-api/products/geocoder-api
 - ```API Поиска по организациям``` - https://yandex.ru/maps-api/products/geosearch-api
+- ```API Maptiler``` https://cloud.maptiler.com/account/keys/
 
 ----
 
 gh-pages (deploy): https://markelov97vad.github.io/geosemantica-test/
 
 ----
+
+### Установка и запуск проекта:
+
+1. `git clone` https://github.com/Markelov97Vad/geosemantica-test.git - клонировать репозиторий на свое устройство (HTTPS)
+2. `npm i` - установить зависимости
+3. Добавить `.env` файл с ключами:
+    - `API_KEY_PLACE=<ключ API Геокодера>` 
+    - `API_KEY_ORG=<ключ API Поиска по организациям>`
+    - `API_KEY_MAP=<ключ API Maptiler>`
+4. `npm run start` - запустить приложение
+5. `npm run build:dev` - сборка проекта в режиме разработки
+6. `npm run build:prod` - сборка production версии
