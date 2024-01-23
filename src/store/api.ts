@@ -1,6 +1,5 @@
 import { ApiOrganizationResponseType, OrganizationDataType } from '@/types/apiOrganization';
 import { ApiGeocoderResponseType, featureMemberType } from '@/types/apiPlace';
-// import { KEY } from '@/utils/constants';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const fetchPlace = createAsyncThunk<featureMemberType[], string, { rejectValue: string }>(
@@ -11,7 +10,6 @@ const fetchPlace = createAsyncThunk<featureMemberType[], string, { rejectValue: 
       const response = await fetch(
         `https://geocode-maps.yandex.ru/1.x/?apikey=${key}&geocode=${queryString}&results=4&format=json`,
       );
-      console.log(queryString);
 
       if (!response.ok) {
         return await Promise.reject(new Error(`Status: ${response.status}`));
@@ -31,10 +29,9 @@ const fetchOrganization = createAsyncThunk<OrganizationDataType[], string, { rej
   async function (queryString, { rejectWithValue }) {
     try {
       const key = process.env.API_KEY_ORG;
-      console.log(key);
-      
+
       const response = await fetch(
-        `https://search-maps.yandex.ru/v1/?text=${queryString}&results=3&lang=ru_RU&apikey=${key}`
+        `https://search-maps.yandex.ru/v1/?text=${queryString}&results=3&lang=ru_RU&apikey=${key}`,
       );
 
       if (!response.ok) {
@@ -43,8 +40,7 @@ const fetchOrganization = createAsyncThunk<OrganizationDataType[], string, { rej
 
       const json = (await response.json()) as ApiOrganizationResponseType;
       const organizationData: OrganizationDataType[] = json.features;
-      console.log(organizationData);
-      
+
       return organizationData;
     } catch (err) {
       return rejectWithValue(`Ошибка при получении данных организации: ${err}`);

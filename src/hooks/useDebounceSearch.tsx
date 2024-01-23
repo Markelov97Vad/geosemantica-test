@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-// Generic reusable hook
 const useDebouncedSearch = (value: string, delay: number) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
 

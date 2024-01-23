@@ -6,7 +6,6 @@ import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
-import CopyPlugin from 'copy-webpack-plugin';
 import dotenv from 'dotenv';
 
 function buildPlugins({mode, paths , analyzer, platform} : BuildOptions): Configuration['plugins'] {
@@ -38,14 +37,6 @@ function buildPlugins({mode, paths , analyzer, platform} : BuildOptions): Config
       filename: 'css/[name].[contenthash:8].css',
       chunkFilename: 'css/[name].[contenthash:8].css'
     }));
-    // plugins.push(new CopyPlugin({
-    //   patterns: [
-    //     {
-    //       from: path.resolve(paths.public, 'data'),
-    //       to: path.resolve(paths.output, 'data')
-    //     }
-    //   ]
-    // }))
   }
   if(analyzer) {
     plugins.push(new BundleAnalyzerPlugin());

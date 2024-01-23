@@ -30,7 +30,7 @@ export type featureMemberType = {
   };
 };
 
-export type ImetaDataProperty = {
+export type IMetaDataProperty = {
   GeocoderResponseMetaData: {
     request: string;
     results: string;
@@ -41,7 +41,7 @@ export type ImetaDataProperty = {
 export type ApiGeocoderResponseType = {
   response: {
     GeoObjectCollection: {
-      metaDataProperty: ImetaDataProperty;
+      metaDataProperty: IMetaDataProperty;
       featureMember: featureMemberType[];
     };
   };

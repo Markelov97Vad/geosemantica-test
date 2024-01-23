@@ -1,5 +1,4 @@
 import { featureMemberType } from '@/types/apiPlace';
-import { DEFAULT_POINT } from '@/utils/constants';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchOrganization, fetchPlace } from './api';
 import { OrganizationDataType } from '@/types/apiOrganization';
@@ -13,7 +12,7 @@ type InitialStateType = {
 };
 
 const initialState: InitialStateType = {
-  point: DEFAULT_POINT,
+  point: '',
   placeData: [],
   organizationData: [],
   error: null,

@@ -1,0 +1,56 @@
+@use '../../assets/styles/variables' as *;
+@use '../../assets/styles/mixins' as *;
+
+.dropdown {
+  position: relative;
+  box-sizing: border-box;
+  &__list {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    top: 10px;
+    left: 0;
+    right: 0;
+    background-color: $color-background;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__link {
+    min-height: 30px;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    @include showFonts(
+      $size: 15px,
+      $weight: 700,
+      $line-height: 15px,
+      $color: $color-font-black
+    );
+
+    &:hover {
+      cursor: pointer;
+      background-color: $color-background-hover;
+    }
+  }
+
+  &__description {
+    margin-left: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    @include showFonts(
+      $size: 12px,
+      $weight: 400,
+      $line-height: 12px,
+      $color: $color-font-gray
+    );
+  }
+}

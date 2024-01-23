@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import searcSlice from './searchSlice';
+import searchSlice from './searchSlice';
 
 export const store = configureStore({
   reducer: {
-    search: searcSlice,
+    search: searchSlice,
   },
 });
 
