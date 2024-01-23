@@ -21,6 +21,7 @@ function buildPlugins({mode, paths , analyzer, platform} : BuildOptions): Config
     }),
     new DefinePlugin({
       __PLATFORM__: JSON.stringify(platform),
+      "process.env.API_KEY_MAP": JSON.stringify(env.API_KEY_MAP),
       "process.env.API_KEY_PLACE": JSON.stringify(env.API_KEY_PLACE),
       "process.env.API_KEY_ORG": JSON.stringify(env.API_KEY_ORG),
     })

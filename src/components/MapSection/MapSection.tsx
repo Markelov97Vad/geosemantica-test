@@ -1,67 +1,113 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import Map, { NavigationControl, Marker, GeolocateControl, GeolocateResultEvent, useMap, useControl, ScaleControl, MapRef, ViewStateChangeEvent } from 'react-map-gl/maplibre';
+// import Map, {MapRef , Marker} from 'react-map-gl';
 import maplibregl from 'maplibre-gl';
-import Map, { NavigationControl, Marker, GeolocateControl, GeolocateResultEvent } from 'react-map-gl/maplibre';
 import Navigation from '../Navigation/Navigation';
-import { ApiGeocoderResponseType } from '@/types/apiPlace';
 import './MapSection.scss';
 import { useAppSelector } from '@/hooks/reduxHooks';
-import { ViewStateChangeEvent } from 'react-map-gl';
-// import { GeolocateResultEvent } from "react-map-gl";
+
 
 function MapSection() {
-  const [response, setResponse] = useState<ApiGeocoderResponseType>();
   const { point } = useAppSelector(state => state.search);
   const longValue = Number(point.split(' ')[0]);
-  const longValue2 = Number('0.329089');
   const latValue = Number(point.split(' ')[1]);
-  const latValue2 = Number('42.826748');
+
+  const geoControlRef = useRef<maplibregl.GeolocateControl>();
+  const mapRef = useRef<MapRef>();
+
+  useEffect(() => {
+    // Activate as soon as the control is loaded
+    geoControlRef.current?.trigger();
+    // geoControlRef.current?.
+  }, [geoControlRef.current]);
 
   const [viewState, setViewState] = useState({
-    longitude: longValue,
-    latitude: latValue,
+    longitude: 30.30181113722973,
+    latitude: 59.95294975379594,
     zoom: 14,
   });
 
-  const handleGeolocate = (e: GeolocateResultEvent) => {
-    const {} = e.originalEvent;
-  };
-  const onMove = useCallback((e: any) => {
-    // dispatch({type: 'setViewState', payload: e.viewState});
-    setViewState(e.viewState);
-    // console.log(e.viewState);
-  }, []);
+  // const geocoder = useControl(viewState)
 
+  // const {current: map} = useMap();
+  const onMove = useCallback((e: ViewStateChangeEvent) => {
+    setViewState(e.viewState);
+    // setViewState2(e.viewState.);
+    // console.log(e.originalEvent.view.location)
+    // map?.flyTo({ center: [longValue, latValue]},);
+  }, []);
+  const onZoom = (e: ViewStateChangeEvent) => {
+    // mapRef.current?.flyTo({center: [longValue, latValue], duration: 2000});
+    setViewState(e.viewState);
+  }
+  const onPitch = (e: ViewStateChangeEvent) => {
+    // mapRef.current?.flyTo({center: [longValue, latValue], duration: 2000});
+    setViewState(e.viewState);
+  }
+  // const onSelectCity = useCallback(() => {
+  //   mapRef.current?.flyTo({center: [viewState.longitude, viewState.latitude], duration: 2000});
+  // }, []);
+  
+  // const onMapLoad = useCallback(() => {
+  //   mapRef?.current?.flyTo({center: [viewState.longitude, viewState.latitude], duration: 2000});
+  // }, [viewState]);
   useEffect(() => {
-    // console.log(response.response.GeoObjectCollection.featureMember.forEach(data => console.log(data.GeoObject.Point)));
-    // longValue
-    console.log(longValue, latValue);
-    setViewState({
-      longitude: Number(point.split(' ')[0]),
-      latitude: Number(point.split(' ')[1]),
-      zoom: 14,
-    });
+    // map?.flyTo({ center: [longValue, latValue ], essential: true});
+    // if (mapRef.current) {
+    //   mapRef.current.flyTo(({ center: [longValue, latValue ], essential: true}))
+      
+    // }
+    if (point) {
+      // onSelectCity();
+      // onMapLoad();
+      mapRef?.current?.flyTo({center: [longValue, latValue], duration: 2000});
+      setViewState({
+        longitude: longValue,
+        latitude: latValue,
+        zoom: 14,
+      });
+    }
+    console.log('render',point);
+    
   }, [point]);
+
+  // const mapRef = useRef<MapRef>();
+
+
+  
+  // const onClick = () => {
+  //   map.flyTo({center: [-122.4, 37.8]});
+  // };
+
+  const initialViewState = {
+    latitude: 59.95294975379594,
+    longitude: 30.30181113722973,
+    zoom: 14,
+    bearing: 0,
+    pitch: 0
+  };
+
+  const KEY = process.env.API_KEY_MAP
+
   return (
     <section className="map-section">
       <Navigation />
       <Map
+        ref={mapRef}
         mapLib={maplibregl}
-        // trackResize={true}
-        // initialViewState={{
-        //   longitude: longValue,
-        //   latitude: latValue,
-        //   zoom: 14,
-        // }}
-        // initialViewState={viewState}
-        {...viewState}
-        onMove={onMove}
+        // {...viewState}
+        initialViewState={initialViewState}
+        // onMove={onMove}
+        // onZoom={onZoom}
+        // onPitch={onPitch}
         style={{ width: '100%', height: ' calc(100vh - 77px)' }}
-        mapStyle="https://api.maptiler.com/maps/streets/style.json?key=TtkWw04Kri0pzq5wPr6w"
+        mapStyle={`https://api.maptiler.com/maps/streets/style.json?key=${KEY}`}
+        // touchPitch={true}
       >
+        {/* <ScaleControl /> */}
         <NavigationControl position="top-left" />
-        <GeolocateControl onGeolocate={handleGeolocate} position="top-left"/>
-        <Marker longitude={longValue} latitude={latValue} color="red" />
-        {/* <Marker longitude={longValue2} latitude={latValue2} color="red" fly/> */}
+        {/* <GeolocateControl ref={geoControlRef} position="top-left" /> */}
+        {point && <Marker longitude={longValue} latitude={latValue} color="red" />}
       </Map>
     </section>
   );

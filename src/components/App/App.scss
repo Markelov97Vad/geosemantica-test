@@ -3,9 +3,6 @@
 .root {
   padding: 20px 20px 0;
   box-sizing: border-box;
-  &__title {
-    color: green;
-  }
 
   @include mobile {
     padding-top: 5px;
